@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Lista Zakupów</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+    <div id="main">
+        <h1>Witaj na Stronie Głównej!</h1>
+        <h5>Aplikacja ta pozwala wam na zrobienie listy zakupów.<br>
+         Dodatkowo, abyście nie zmokli w drodze do waszego ulubionego sklepu,<br>
+         możecie zobaczyć jak wygląda pogoda.
+        </h5>
+        <div id="menu">
+            <a href="shopping.html"><img src="/img/favicon.png"></a>
+            <a href="weather.html"><img src="/img/sun.png"></a>
+        </div>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(function() {
+                    console.log('Service Worker zarejestrowany poprawnie.');
+                })
+                .catch(function(error) {
+                    console.error('Błąd podczas rejestracji Service Workera:', error);
+                });
+        }
+    </script>
+</body>
+</html>

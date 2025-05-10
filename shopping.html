@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Lista Zakupów</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+    <div id="main">
+        <div id="menu">
+            <a href="index.html">Strona Główna</a>
+        </div>
+        <h5>Wpisz swoje zakupy! Jeżeli chcesz usunąć jakiś produkt, to w niego kliknij. Produkty są zapisywane, więc nie musisz się martwić że ci znikną.</h5>
+        <h1>Twoja Lista Zakupów</h1>
+        <form id="form">
+            <input type="text" id="input" placeholder="Dodaj produkt" required>
+            <button type="submit">Dodaj</button>
+        </form>
+        <ul id="list"></ul>
+    </div>
+
+    <script src="/scripts/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(function() {
+                    console.log('Service Worker zarejestrowany poprawnie.');
+                })
+                .catch(function(error) {
+                    console.error('Błąd podczas rejestracji Service Workera:', error);
+                });
+        }
+    </script>
+</body>
+</html>
