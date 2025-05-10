@@ -12,11 +12,11 @@ self.addEventListener('install', function(event) {
 
                 '/',
 
-                '/css',
+                '/css/',
 
-                '/img',
+                '/img/',
 
-                '/scripts',
+                '/scripts/',
 
                 '/index.html',
 
@@ -24,7 +24,7 @@ self.addEventListener('install', function(event) {
 
                 '/weather.html',
 
-                '/scritps/script.js',
+                '/scripts/script.js',
 
                 '/scripts/script_weather.js',
 
