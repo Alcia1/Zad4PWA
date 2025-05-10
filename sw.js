@@ -54,7 +54,7 @@ if ("serviceWorker" in navigator) {
       caches.match(event.request).then((response) => {
         if (response) {
           //entry found in cache
-          return event.respondWith(response);
+          return response;
         }
         return fetch(event.request);
       })
