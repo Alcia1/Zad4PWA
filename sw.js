@@ -9,6 +9,7 @@ self.addEventListener('install', function(event) {
         caches.open('my-cache').then(function(cache) {
 
             return cache.addAll([
+                '/',
 
                 '/index.html',
 
