@@ -11,11 +11,6 @@ if ("serviceWorker" in navigator) {
   }
 
   self.addEventListener("install", (event) => {
-    // Kod wykonywany podczas instalacji
-    console.log("SW zainstalowany!");
-  });
-
-  self.addEventListener("install", (event) => {
     function onInstall() {
       return caches
         .open("static")
@@ -53,7 +48,6 @@ if ("serviceWorker" in navigator) {
     event.respondWith(
       caches.match(event.request).then((response) => {
         if (response) {
-          //entry found in cache
           return response;
         }
         return fetch(event.request);
