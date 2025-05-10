@@ -2,7 +2,7 @@
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("/serviceWorker.js", {
+      .register("/sw.js", {
         scope: "/",
       })
       .then((registration) => {
