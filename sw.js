@@ -1,49 +1,62 @@
 // sw.js
 
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/serviceWorker.js", {
+        scope: "/",
+      })
+      .then((registration) => {
+        console.log("SW zarejestrowany! Scope:", registration.scope);
+      });
+  }
 
+  self.addEventListener("install", (event) => {
+    // Kod wykonywany podczas instalacji
+    console.log("SW zainstalowany!");
+  });
 
-self.addEventListener('install', function(event) {
+  self.addEventListener("install", (event) => {
+    function onInstall() {
+      return caches
+        .open("static")
+        .then((cache) =>
+          cache.addAll([
+            '/',
 
-    event.waitUntil(
+            '/index.html',
 
-        caches.open('my-cache').then(function(cache) {
+            '/shopping.html',
 
-            return cache.addAll([
-                '/',
+            '/weather.html',
 
-                '/index.html',
+            '/scripts/script.js',
 
-                '/shopping.html',
+            '/scripts/script_weather.js',
 
-                '/weather.html',
+            '/css/style.css',
+            
+            '/img/favicon.png',
 
-                '/scripts/script.js',
+            '/img/sun.png',
 
-                '/scripts/script_weather.js',
+            '/img/icon192.png',
 
-                '/css/style.css',
-                
-                '/img/favicon.png',
+            '/img/icon512.png'
+          ])
+        );
+    }
+   
+    event.waitUntil(onInstall(event));
+  });
 
-                '/img/sun.png',
-
-                '/img/icon192.png',
-
-                '/img/icon512.png'
-            ]);
-
-        })
-
-    );
-
-});
-
-self.addEventListener('fetch', function(event) {
+  self.addEventListener("fetch", (event) => {
     event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          return response || fetch(event.request);
-        })
-        .catch(() => caches.match('/')) // fallback na offline
+      caches.match(event.request).then((response) => {
+        if (response) {
+          //entry found in cache
+          return response;
+        }
+        return fetch(event.request);
+      })
     );
   });
